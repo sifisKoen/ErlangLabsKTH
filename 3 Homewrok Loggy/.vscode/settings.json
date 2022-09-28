@@ -3,6 +3,8 @@
         "keydelete",
         "keyfind",
         "keyreplace",
-        "Lamport"
+        "keysort",
+        "Lamport",
+        "zipwith"
     ]
 }
