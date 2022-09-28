@@ -39,28 +39,25 @@ loop(Clock, OldMessageList) ->
     receive
         {log, From, Time, Msg} ->
             MessageList = createQueue(OldMessageList, {log, From, Time, Msg}, false),
-
+            % The updated lists:
             List = vectorTime:update(From, Time, Clock),
             case vectorTime:safe(Time, List) of
                 true ->
-                    TempList = logInfo(Time, MessageList),
-                    loop(List, TempList);
+                    loop(List, logInfo(Time, MessageList));
                 false ->
                     loop(List, MessageList)
             end;
-        % log(From, Time, Msg),
-        % loop();
         stop ->
             ok
     end.
 
 logInfo(_, []) ->
     [];
-logInfo(Time, [{log, From, MsgTime, Msg} | T]) ->
+logInfo(Time, [{log, From, MessageTime, Msg} | T]) ->
     if
-        MsgTime =< Time ->
+        MessageTime =< Time ->
             io:format("log: ~w~w~p~n", [Time, From, Msg]),
             logInfo(Time, T);
         true ->
-            [{log, From, MsgTime, Msg} | T]
+            [{log, From, MessageTime, Msg} | T]
     end.
