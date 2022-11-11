@@ -9,4 +9,4 @@ This is a repository for all Erlang labs, for the ID2201 HT22 (50524) Distribute
         2. Homework 2 Routy
         3. Homework 3 Loggy
         4. Homework 4 Groupy
-        5. Homework 3 Chordy
+        5. Homework 5 Chordy
